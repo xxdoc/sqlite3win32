@@ -24,14 +24,23 @@
 #define SQLITE_STDCALL __stdcall
 #define SQLITE_WIN32_MALLOC 1
 #define SQLITE_WIN32_HEAP_CREATE 1
-#define SQLITE_THREADSAFE 2
+#define SQLITE_THREADSAFE 1
 // #define SQLITE_USE_URI 1
 #define SQLITE_SOUNDEX 1
+#define SQLITE_OMIT_DEPRECATED 1
 #define SQLITE_ENABLE_FTS3 1
 #define SQLITE_ENABLE_FTS3_PARENTHESIS 1
 #define SQLITE_ENABLE_FTS4 1
 #define SQLITE_ENABLE_RTREE 1
 #define SQLITE_ENABLE_UNLOCK_NOTIFY 1
 #define SQLITE_ENABLE_COLUMN_METADATA 1
+// #define SQLITE_ENABLE_DESERIALIZE 1
+#define SQLITE_ENABLE_NORMALIZE 1
+#define SQLITE_ENABLE_MATH_FUNCTIONS 1
+#define SQLITE_DQS 0
 
 #include "sqlite3\sqlite3.c"
+#if defined(SQLITE_CORE)
+#include "sqlite3\ext\regexp.c"
+#include "sqlite3\ext\concat.c"
+#endif

@@ -1,11 +1,17 @@
+# pragma warning (disable : 4229)  // anachronism used: modifiers on data are ignored
+# pragma warning (disable : 4005)  // macro redefinition
+
 #define SQLITE_API extern "C"
 #define SQLITE_STDCALL __stdcall
+#define SQLITE_CDECL __cdecl
 #define SQLITE_WIN32_MALLOC 1
 #define SQLITE_WIN32_HEAP_CREATE 1
 #define SQLITE_THREADSAFE 1
+#define SQLITE_DEFAULT_CACHE_SIZE -8000
 // #define SQLITE_USE_URI 1
 #define SQLITE_SOUNDEX 1
 #define SQLITE_OMIT_DEPRECATED 1
+#define SQLITE_OMIT_AUTOINIT 1
 #define SQLITE_ENABLE_FTS3 1
 #define SQLITE_ENABLE_FTS3_PARENTHESIS 1
 #define SQLITE_ENABLE_FTS4 1
@@ -118,6 +124,7 @@ class MODULE
     DECLFUNC(db_filename)
     DECLFUNC(db_handle)
     DECLFUNC(db_mutex)
+    DECLFUNC(db_name)
     DECLFUNC(db_readonly)
     DECLFUNC(db_release_memory)
     DECLFUNC(db_status)
@@ -129,6 +136,7 @@ class MODULE
     DECLFUNC(errcode)
     DECLFUNC(errmsg16)
     DECLFUNC(errmsg)
+    DECLFUNC(error_offset)
     DECLFUNC(errstr)
     DECLFUNC(exec)
     DECLFUNC(expanded_sql)
@@ -276,8 +284,13 @@ class MODULE
     DECLFUNC(vfs_register)
     DECLFUNC(vfs_unregister)
     DECLFUNC(vtab_collation)
+    DECLFUNC(vtab_distinct)
+    DECLFUNC(vtab_in)
+    DECLFUNC(vtab_in_first)
+    DECLFUNC(vtab_in_next)
     DECLFUNC(vtab_nochange)
     DECLFUNC(vtab_on_conflict)
+    DECLFUNC(vtab_rhs_value)
     DECLFUNC(wal_autocheckpoint)
     DECLFUNC(wal_checkpoint)
     DECLFUNC(wal_checkpoint_v2)
@@ -377,6 +390,7 @@ DEFFUNC(db_cacheflush)
 DEFFUNC(db_filename)
 DEFFUNC(db_handle)
 DEFFUNC(db_mutex)
+DEFFUNC(db_name)
 DEFFUNC(db_readonly)
 DEFFUNC(db_release_memory)
 DEFFUNC(db_status)
@@ -388,6 +402,7 @@ DEFFUNC(enable_shared_cache)
 DEFFUNC(errcode)
 DEFFUNC(errmsg16)
 DEFFUNC(errmsg)
+DEFFUNC(error_offset)
 DEFFUNC(errstr)
 DEFFUNC(exec)
 DEFFUNC(expanded_sql)
@@ -535,8 +550,13 @@ DEFFUNC(vfs_find)
 DEFFUNC(vfs_register)
 DEFFUNC(vfs_unregister)
 DEFFUNC(vtab_collation)
+DEFFUNC(vtab_distinct)
+DEFFUNC(vtab_in)
+DEFFUNC(vtab_in_first)
+DEFFUNC(vtab_in_next)
 DEFFUNC(vtab_nochange)
 DEFFUNC(vtab_on_conflict)
+DEFFUNC(vtab_rhs_value)
 DEFFUNC(wal_autocheckpoint)
 DEFFUNC(wal_checkpoint)
 DEFFUNC(wal_checkpoint_v2)
